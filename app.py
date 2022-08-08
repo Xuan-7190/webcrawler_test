@@ -6,7 +6,7 @@ app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False # 讓傳出去的json可以中文顯示
 app.config['JSON_SORT_KEYS'] = False # 輸出的json資料不要讓他排序
 
-@app.route('/')
+@app.route('/test')
 def home():
     return 'test'
 
