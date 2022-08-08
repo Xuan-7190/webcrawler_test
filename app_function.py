@@ -7,8 +7,8 @@ url = '''https://raw.githubusercontent.com/Xuan-7190/webcrawler_test/master/539%
 
 # 抓近30期的資料(回傳json格式)
 def get_save_data_top30_json():
-    # df = pd.read_csv('./539樂透資料.csv')
-    df = pd.read_csv(url)
+    df = pd.read_csv('./539樂透資料.csv')
+    # df = pd.read_csv(url)
     df_top30 = df[:300]
     jdata = df_top30.to_json(orient='records', force_ascii=False)
     return jsonify(json.loads(jdata))
@@ -16,23 +16,23 @@ def get_save_data_top30_json():
 
 # 抓全部的資料(回傳df格式)
 def get_save_data_df():
-    # df = pd.read_csv('./539樂透資料.csv')
-    df = pd.read_csv(url)
+    df = pd.read_csv('./539樂透資料.csv')
+    # df = pd.read_csv(url)
     return df
 
 
 # 取得資料的全部範圍
 def get_data_length():
-    # df = pd.read_csv('./539樂透資料.csv')
-    df = pd.read_csv(url)
+    df = pd.read_csv('./539樂透資料.csv')
+    # df = pd.read_csv(url)
     df_len = len(df)
     return df_len
 
 
 # 抓全部的資料(回傳json格式)
 def get_save_data_json():
-    # df = pd.read_csv('./539樂透資料.csv')
-    df = pd.read_csv(url)
+    df = pd.read_csv('./539樂透資料.csv')
+    # df = pd.read_csv(url)
     jdata = df.to_json(orient='records', force_ascii=False)
     return jsonify(json.loads(jdata))
 

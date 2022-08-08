@@ -1,8 +1,48 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1> search result <h1>
+    <div class="tables">
+        <table class="table">
+            <thead class="table__header">
+                <th style="width: 50px" class="table__cell">號碼</th>
+                <th style="width: 50px" class="table__cell">出現次數</th>
+            </thead>
+            {% for key, value in data.statistics_result.items() %}
+                <tr class="table__row">
+                    <td style="width: 50px" class="table__cell">{{key}}</td>
+                    <td style="width: 50px" class="table__cell">{{value}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        
+        <table class="table">
+            <thead class="table__header">
+                <th style="width: 50px" class="table__cell">期數</th>
+                <th style="width: 100px" class="table__cell">開獎日期</th>
+                <th style="width: 400px" class="table__cell">今彩539中獎號碼</th>
+                <th style="width: 100px" class="table__cell">備註</th>
+            </thead>
+            {% for item in data.jdata %}
+                <tr class="table__row">
+                    <td style="width: 50px" class="table__cell">{{item['期數']}}</td>
+                    <td style="width: 100px" class="table__cell">{{item['開獎日期']}}</td>
+                    <td style="width: 400px" class="table__cell">{{item['今彩539中獎號碼']}}</td>
+                    <td style="width: 100px" class="table__cell">{{item['備註']}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+{% endblock  %}
+
+
+<!-- <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
-    <!-- <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" rel="stylesheet" /> -->
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" rel="stylesheet" />
     <title>flask-lto-app</title>
     <link rel="stylesheet" href="/static/style.css" />
 </head>
@@ -40,4 +80,4 @@
     <script crossorigin="anonymous" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script crossorigin="anonymous" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </body>
-</html>
+</html> -->
