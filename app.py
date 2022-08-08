@@ -1,5 +1,4 @@
 import requests
-import json
 from flask import Flask, request, render_template, redirect
 from app_function import get_data_length, get_save_data_top30_json, get_save_data_df, get_save_data_json, search_numbers_combination
 
@@ -21,13 +20,13 @@ def post_submit():
     search_url = url+number
     # 呼叫api
     response = requests.get(search_url)
-    print(type(response))
+    # print(type(response))
     # 將結果
     response_dic = response.json()
-    print(type(response_dic))
+    # print(type(response_dic))
     # print(response_dic['jdata'])
-    print(response_dic['jdata'][0]['今彩539中獎號碼'])
-    print(type(response_dic['jdata'][0]['今彩539中獎號碼']))
+    # print(response_dic['jdata'][0]['今彩539中獎號碼'])
+    # print(type(response_dic['jdata'][0]['今彩539中獎號碼']))
     # test_result = json.loads(str(response_dic['jdata'][0]))
     # print(test_result)
     
