@@ -1,0 +1,9 @@
+Flask
+gunicorn
+pandas
+os
+re
+json
+time
+requests
+beautifulsoup4

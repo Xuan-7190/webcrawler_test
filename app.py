@@ -20,3 +20,7 @@ def get_save_data_api():
 @app.route('/search_numbers_combination/search_numbers=<search_numbers>&period=<period>&next=<next>')
 def search_numbers_combination_api(search_numbers, period, next):
     return search_numbers_combination(search_numbers, period, next, get_save_data_df())
+
+
+if __name__=="__main__":    # 如果以主程式執行
+    app.run()               # 立刻啟動伺服器
