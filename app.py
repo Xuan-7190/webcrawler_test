@@ -1,6 +1,6 @@
 from flask import Flask
 from app_function import get_data_length, get_save_data_top30_json, get_save_data_df, get_save_data_json, search_numbers_combination
-import time
+
 
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False # 讓傳出去的json可以中文顯示
