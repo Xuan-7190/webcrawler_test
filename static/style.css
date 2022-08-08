@@ -1,0 +1,22 @@
+.table {
+    width:50%;
+    margin-bottom:1rem;
+    color:#212529;
+}
+
+.table__row:nth-child(even) {
+    background-color: #e5e5e5;    
+}
+
+.table__header {
+    text-align: left;
+}
+
+.table__cell {
+    padding: 8px;
+}
+
+tr:hover {
+    color:#212529;
+    background-color:rgba(0,0,0,.075);
+}
