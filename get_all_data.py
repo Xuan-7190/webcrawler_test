@@ -24,6 +24,8 @@ def lotto_data_process(lotto_table_info):
 
 def get_all_data():
     
+    print('start get_all_data function')
+    
     # 第一次進來先抓所有頁數
     first_url = f'https://www.pilio.idv.tw/lto539/listBBK.asp'
 
@@ -74,8 +76,5 @@ def get_all_data():
     df = df_tmp[df_columns]
     
     df.to_csv('539樂透資料.csv', encoding='utf-8', index=False)
-
-
-print('start')
-get_all_data()
-print('done!')
+    
+    print('end get_all_data function')
