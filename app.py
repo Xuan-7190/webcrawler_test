@@ -63,6 +63,14 @@ def post_submit():
     response_dic = response.json()
     return render_template('result.html', data=response_dic)
 
+@app.route('/search', methods=['POST'])
+def post_search():
+    search_url = 'https://flask-lto-app.herokuapp.com/get_save_data'
+    # 呼叫api
+    response = requests.get(search_url)
+    # 將結果轉成dic
+    response_dic = response.json()
+    return render_template('search_result.html', data=response_dic)
 
 @app.route('/get_save_data_top30')
 def get_save_data_top30_api():
