@@ -23,5 +23,6 @@ tr:hover {
 
 .tables {
     display: flex;
+    align-items: flex-start;
     gap: 30px;
 }

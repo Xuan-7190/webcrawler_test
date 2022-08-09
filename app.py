@@ -6,6 +6,7 @@ from flask_apscheduler import APScheduler
 from get_all_data import get_all_data
 
 
+
 class Config(object):
     # JOBS可以在配置裡面配置
     JOBS = [{
