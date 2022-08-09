@@ -6,7 +6,6 @@ from flask_apscheduler import APScheduler
 from get_all_data import get_all_data
 
 
-
 class Config(object):
     # JOBS可以在配置裡面配置
     JOBS = [{
@@ -15,7 +14,7 @@ class Config(object):
         'trigger' : 'cron',
         'day' : '*',
         'hour' : '21',
-        'minute' : '0',
+        'minute' : '40',
         'second' : '0',
         'replace_existing' : True # 重新執行程序時，會將jobStore中的任務替換掉
     }]

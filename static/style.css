@@ -8,6 +8,11 @@
     background-color: #e5e5e5;    
 }
 
+.table__row:hover {
+    color:#212529;
+    background-color:rgba(0,0,0,.075);
+}
+
 .table__header {
     text-align: left;
 }
@@ -16,12 +21,13 @@
     padding: 8px;
 }
 
-tr:hover {
-    color:#212529;
-    background-color:rgba(0,0,0,.075);
+.tables {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
 }
 
-.tables {
+.forms {
     display: flex;
     align-items: flex-start;
     gap: 30px;
