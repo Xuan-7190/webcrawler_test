@@ -40,22 +40,28 @@ def index():
 
 @app.route('/submit', methods=['POST'])
 def post_submit():
+    # 取得使用者選擇幾種數字組合
+    combinations_list = request.form.get('combinations_list')
     # 取得輸入的數字組合
-    number = request.form.get('number')
+    number_str = ''
+    for i in range(int(combinations_list)):
+        number_str += request.form.get('number'+str(i+1)) + ' '
+        # number = request.form.get('number')
     # 取得輸入的期數範圍
     period = request.form.get('period')
     # 取得輸入的下幾期
     next = request.form.get('next')
     # 串接url
     if (not period):
-        search_url = url+'search_numbers='+number+'&next='+next
+        search_url = url+'search_numbers='+number_str+'&next='+next
     elif period:
-        search_url = url+'search_numbers='+number+'&period='+period+'&next='+next
+        search_url = url+'search_numbers='+number_str+'&period='+period+'&next='+next
     # 呼叫api
     response = requests.get(search_url)
     # 將結果轉成dic
     response_dic = response.json()
     return render_template('result.html', data=response_dic)
+
 
 @app.route('/get_save_data_top30')
 def get_save_data_top30_api():
