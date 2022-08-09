@@ -3,4 +3,5 @@ gunicorn
 pandas
 requests
 beautifulsoup4
+lxml
 Flask-APScheduler

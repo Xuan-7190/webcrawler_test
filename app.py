@@ -14,7 +14,7 @@ class Config(object):
         'trigger' : 'cron',
         'day' : '*',
         'hour' : '21',
-        'minute' : '40',
+        'minute' : '44',
         'second' : '0',
         'replace_existing' : True # 重新執行程序時，會將jobStore中的任務替換掉
     }]
