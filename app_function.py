@@ -6,20 +6,20 @@ from flask import jsonify
 url = '''https://raw.githubusercontent.com/Xuan-7190/webcrawler_test/master/539%E6%A8%82%E9%80%8F%E8%B3%87%E6%96%99.csv'''
 
 
-# 抓全部的資料(回傳df格式)
-def get_save_data_df():
-    df = pd.read_csv('./539樂透資料.csv')
-    # df = pd.read_csv(url)
-    df_rev = df[::-1]
-    return df_rev
-
-
 # 取得資料的全部範圍
 def get_data_length():
     df = pd.read_csv('./539樂透資料.csv')
     # df = pd.read_csv(url)
     df_len = len(df)
     return df_len
+
+
+# 抓全部的資料(回傳df格式)
+def get_save_data_df():
+    df = pd.read_csv('./539樂透資料.csv')
+    # df = pd.read_csv(url)
+    df_rev = df[::-1]
+    return df_rev
 
 
 # 可以依照自訂的輸入期數抓時間內的資料(回傳json格式)
