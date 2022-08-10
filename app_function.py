@@ -19,8 +19,7 @@ def get_data_length():
 def get_save_data_df():
     df = pd.read_csv('./539樂透資料.csv')
     # df = pd.read_csv(url)
-    df_rev = df[::-1].reset_index(drop=True)
-    return df_rev
+    return df
 
 
 # 可以依照自訂的輸入期數抓時間內的資料(回傳json格式)
@@ -80,8 +79,8 @@ def search_numbers_combination(search_numbers, period, next, lotto_all_data_df):
         # 不需要回傳 CK 欄位
         key_list = ['期數', '開獎日期', '今彩539中獎號碼', '備註']
         lotto_all_data_df = lotto_all_data_df_tmp[lotto_all_data_df_tmp['CK']==True]
-        # lotto_all_data_df_rev = lotto_all_data_df[::-1].reset_index(drop=True)
-        jdata = lotto_all_data_df[key_list].to_json(orient='records', force_ascii=False)
+        lotto_all_data_df_rev = lotto_all_data_df[::-1].reset_index(drop=True)
+        jdata = lotto_all_data_df_rev[key_list].to_json(orient='records', force_ascii=False)
         # 進行統計號碼
         statistics_result = statistics_numbers(lotto_all_data_df_tmp[lotto_all_data_df_tmp['NEXT']==True][key_list])
         
