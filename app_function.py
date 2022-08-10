@@ -24,16 +24,12 @@ def get_save_data_df():
 
 # 可以依照自訂的輸入期數抓時間內的資料(回傳json格式)
 def get_save_data_json(search_period):
-    try:
-        df = pd.read_csv('./539樂透資料.csv')
-        # df = pd.read_csv(url)
-        df_search_period = df[:int(search_period)]
-        df_search_period_rev = df_search_period[::-1].reset_index(drop=True)
-        jdata = df_search_period_rev.to_json(orient='records', force_ascii=False)
-        return jsonify(json.loads(jdata))
-    
-    except Exception as e:
-        print(e)
+    df = pd.read_csv('./539樂透資料.csv')
+    # df = pd.read_csv(url)
+    df_search_period = df[:int(search_period)]
+    df_search_period_rev = df_search_period[::-1].reset_index(drop=True)
+    jdata = df_search_period_rev.to_json(orient='records', force_ascii=False)
+    return jsonify(json.loads(jdata))
 
 
 # 處理資料的爛字串

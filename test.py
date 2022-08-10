@@ -22,6 +22,7 @@ print(response_dic[0].get('今彩539中獎號碼'))
 print(type(response_dic[0].get('今彩539中獎號碼')))
 print(list(response_dic[0].get('今彩539中獎號碼')))
 
+
 # string = '[9, 11, 31, 36, 39]'
 
 # source_list = re.split(',|\[|\]| ', string)
