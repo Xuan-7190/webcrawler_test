@@ -1,9 +1,10 @@
 import requests
 from flask import Flask, request, render_template
-from app_function import get_data_length, get_save_data_top30_json, get_save_data_df, get_save_data_json, search_numbers_combination
+from app_function import get_data_length, get_save_data_df, get_save_data_json, search_numbers_combination
 from apscheduler.schedulers.background import BackgroundScheduler
 from flask_apscheduler import APScheduler
 from get_all_data import get_all_data
+
 
 
 class Config(object):
@@ -14,14 +15,13 @@ class Config(object):
         'trigger' : 'cron',
         'day' : '*',
         'hour' : '21',
-        'minute' : '44',
+        'minute' : '0',
         'second' : '0',
         'replace_existing' : True # 重新執行程序時，會將jobStore中的任務替換掉
     }]
     SCHEDULER_TIMEZONE = 'Asia/Taipei'  # 配置時區
     SCHEDULER_API_ENABLED = True  # 新增API
 
-url = 'https://flask-lto-app.herokuapp.com/search_numbers_combination/'
 
 # if __name__ == "__main__":
 app = Flask(__name__)
@@ -40,6 +40,7 @@ def index():
 
 @app.route('/submit', methods=['POST'])
 def post_submit():
+    url = 'https://flask-lto-app.herokuapp.com/search_numbers_combination/'
     # 取得使用者選擇幾種數字組合
     combinations_list = request.form.get('combinations_list')
     # 取得輸入的數字組合
@@ -64,20 +65,26 @@ def post_submit():
 
 @app.route('/search', methods=['POST'])
 def post_search():
-    search_url = 'https://flask-lto-app.herokuapp.com/get_save_data'
+    search_url = 'https://flask-lto-app.herokuapp.com/get_save_data/'
+    # 取得輸入的期數範圍
+    search_period = request.form.get('search_period')
+    # 串接url
+    if (not search_period):
+        search_url = search_url+'period='+search_period
     # 呼叫api
     response = requests.get(search_url)
     # 將結果轉成dic
     response_dic = response.json()
     return render_template('search_result.html', data=response_dic)
 
-@app.route('/get_save_data_top30')
-def get_save_data_top30_api():
-    return get_save_data_top30_json()
+# @app.route('/get_save_data_top30')
+# def get_save_data_top30_api():
+#     return get_save_data_top30_json()
 
-@app.route('/get_save_data')
-def get_save_data_api():
-    return get_save_data_json()
+@app.route('/get_save_data/', defaults={'search_period': get_data_length()})
+@app.route('/get_save_data/search_period=<search_period>')
+def get_save_data_api(search_period):
+    return get_save_data_json(search_period)
 
 @app.route('/search_numbers_combination/search_numbers=<search_numbers>', defaults={'period': get_data_length(), 'next': 1})
 @app.route('/search_numbers_combination/search_numbers=<search_numbers>&period=<period>', defaults={'next': 1})
@@ -87,3 +94,4 @@ def search_numbers_combination_api(search_numbers, period, next):
     return search_numbers_combination(search_numbers, period, next, get_save_data_df())
    
     # app.run(debug=True)
+    
