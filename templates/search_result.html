@@ -3,6 +3,9 @@
 {% block content %}
 
     <h1>search result</h1>
+    <form class="" action="/" method="get">
+        <button type="submit">重新搜尋</button>
+    </form>
     <table class="table">
         <thead class="table__header">
             <th style="width: 50px" class="table__cell">期數</th>
@@ -10,14 +13,17 @@
             <th style="width: 400px" class="table__cell">今彩539中獎號碼</th>
             <th style="width: 100px" class="table__cell">備註</th>
         </thead>
-        {% for item in data %}
+        <tbody class="table__body">
+            {% for item in data %}
             <tr class="table__row">
                 <td style="width: 50px" class="table__cell">{{item['期數']}}</td>
                 <td style="width: 100px" class="table__cell">{{item['開獎日期']}}</td>
                 <td style="width: 400px" class="table__cell">{{item['今彩539中獎號碼']}}</td>
                 <td style="width: 100px" class="table__cell">{{item['備註']}}</td>
             </tr>
-        {% endfor %}
+            {% endfor %}
+        </tbody>
+        
     </table>
 
 {% endblock %}
