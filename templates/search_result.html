@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    <h1>search result</h1>
+    <h1>搜尋結果</h1>
     <form class="" action="/" method="get">
         <button type="submit">重新搜尋</button>
     </form>
@@ -11,7 +11,7 @@
         <thead class="table__header">
             <th style="width: 50px" class="table__cell">期數</th>
             <th style="width: 100px" class="table__cell">開獎日期</th>
-            <th style="width: 400px" class="table__cell">今彩539中獎號碼</th>
+            <th style="width: 200px" class="table__cell">今彩539中獎號碼</th>
             <th style="width: 100px" class="table__cell">備註</th>
         </thead>
         <tbody class="table__body">
@@ -20,7 +20,7 @@
                 <td style="width: 50px" class="table__cell">{{item['期數']}}</td>
                 <td style="width: 100px" class="table__cell">{{item['開獎日期']}}</td>
                 <!-- <td style="width: 400px" class="table__cell">{{item['今彩539中獎號碼']}}</td> -->
-                <td style="width: 400px" class="table__cell">
+                <td style="width: 200px" class="table__cell">
                     {% set string1 = item['今彩539中獎號碼'] | replace("[","") | replace("]","") | replace(" ", "") %}
                     {% set list1 = string1.split(',') %}
                     {% set list2 = [] %}
