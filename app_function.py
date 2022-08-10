@@ -1,3 +1,4 @@
+from itertools import dropwhile
 import re
 import pandas as pd
 import json
@@ -18,7 +19,7 @@ def get_data_length():
 def get_save_data_df():
     df = pd.read_csv('./539樂透資料.csv')
     # df = pd.read_csv(url)
-    df_rev = df[::-1]
+    df_rev = df[::-1].reset_index(drop=True)
     return df_rev
 
 
@@ -28,7 +29,7 @@ def get_save_data_json(search_period):
         df = pd.read_csv('./539樂透資料.csv')
         # df = pd.read_csv(url)
         df_search_period = df[:int(search_period)]
-        df_search_period_rev = df_search_period[::-1]
+        df_search_period_rev = df_search_period[::-1].reset_index(drop=True)
         jdata = df_search_period_rev.to_json(orient='records', force_ascii=False)
         return jsonify(json.loads(jdata))
     
@@ -79,8 +80,8 @@ def search_numbers_combination(search_numbers, period, next, lotto_all_data_df):
         # 不需要回傳 CK 欄位
         key_list = ['期數', '開獎日期', '今彩539中獎號碼', '備註']
         lotto_all_data_df = lotto_all_data_df_tmp[lotto_all_data_df_tmp['CK']==True]
-        lotto_all_data_df_rev = lotto_all_data_df[::-1]
-        jdata = lotto_all_data_df_rev[key_list].to_json(orient='records', force_ascii=False)
+        # lotto_all_data_df_rev = lotto_all_data_df[::-1].reset_index(drop=True)
+        jdata = lotto_all_data_df[key_list].to_json(orient='records', force_ascii=False)
         # 進行統計號碼
         statistics_result = statistics_numbers(lotto_all_data_df_tmp[lotto_all_data_df_tmp['NEXT']==True][key_list])
         
