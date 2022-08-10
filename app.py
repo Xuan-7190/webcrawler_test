@@ -6,7 +6,6 @@ from flask_apscheduler import APScheduler
 from get_all_data import get_all_data
 
 
-
 class Config(object):
     # JOBS可以在配置裡面配置
     JOBS = [{
@@ -77,9 +76,6 @@ def post_search():
     response_dic = response.json()
     return render_template('search_result.html', data=response_dic)
 
-# @app.route('/get_save_data_top30')
-# def get_save_data_top30_api():
-#     return get_save_data_top30_json()
 
 @app.route('/get_save_data/', defaults={'search_period': get_data_length()})
 @app.route('/get_save_data/search_period=<search_period>')
