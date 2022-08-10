@@ -13,13 +13,15 @@
                 <th style="width: 50px" class="table__cell">號碼</th>
                 <th style="width: 50px" class="table__cell">出現次數</th>
             </thead>
-            {% for key, value in data[1].statistics_result.items() %}
+            <tbody class="table__body">
+                {% for key, value in data[1].statistics_result.items() %}
                 <tr class="table1__row">
                     <td style="width: 50px" class="table__cell">{{key}}</td>
                     <td style="width: 50px" class="table__cell">{{value}}</td>
                 </tr>
-            {% endfor %}
-            </table>
+                {% endfor %}
+            </tbody>
+        </table>
         <table class="table">
             <thead class="table__header">
                 <th style="width: 50px" class="table__cell">期數</th>
@@ -27,7 +29,7 @@
                 <th style="width: 200px" class="table__cell">今彩539中獎號碼</th>
                 <th style="width: 100px" class="table__cell">備註</th>
             </thead>
-            <tbody>
+            <tbody class="table__body">
                 {% for item in data[1].jdata %}
                 <tr class="table2__row">
                     <td style="width: 50px" class="table__cell">{{item['期數']}}</td>

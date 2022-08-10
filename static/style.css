@@ -11,18 +11,24 @@
 }
 
 .table {
+    /* display: block; */
+    /* height: 50%; */
+    /* overflow-y: auto; */
+
     width:50%;
     margin-bottom:1rem;
     color:#212529;
 }
 
 .table__header {
+    /* display: block; */
     text-align: left;
 }
 
-.table tbody {
-    height: 100px;       /* Just for the demo          */
-    overflow-y: scroll;    /* Trigger vertical scroll    */
+.table__body {
+    /* display: block;
+    height: 50%;
+    overflow-y: auto; */
 }
 
 .table1__row:hover {

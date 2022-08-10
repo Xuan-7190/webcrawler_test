@@ -6,7 +6,6 @@ from flask_apscheduler import APScheduler
 from get_all_data import get_all_data
 
 
-
 class Config(object):
     # JOBS可以在配置裡面配置
     JOBS = [{
@@ -41,6 +40,8 @@ def index():
 @app.route('/submit', methods=['POST'])
 def post_submit():
     url = 'https://flask-lto-app.herokuapp.com/search_numbers_combination/'
+    # url = 'http://127.0.0.1:5000/search_numbers_combination/'
+    
     # 取得使用者選擇幾種數字組合
     combinations_list = request.form.get('combinations_list')
     # 取得輸入的數字組合
@@ -53,10 +54,12 @@ def post_submit():
     # 取得輸入的下幾期
     next = request.form.get('next')
     # 串接url
-    if (not period):
-        search_url = url+'search_numbers='+number_str+'&next='+next
-    elif period:
+    if (period):
+        # 有輸入期數
         search_url = url+'search_numbers='+number_str+'&period='+period+'&next='+next
+    else:
+        # 沒有輸入期數
+        search_url = url+'search_numbers='+number_str+'&period='+str(get_data_length())+'&next='+next
     # 呼叫api
     response = requests.get(search_url)
     # 將結果轉成dic
@@ -69,11 +72,17 @@ def post_submit():
 @app.route('/search', methods=['POST'])
 def post_search():
     search_url = 'https://flask-lto-app.herokuapp.com/get_save_data/'
+    # search_url = 'http://127.0.0.1:5000/get_save_data/'
+    
     # 取得輸入的期數範圍
     search_period = request.form.get('search_period')
     # 串接url
     if (search_period):
+        # 有輸入期數
         search_url = search_url+'search_period='+search_period
+    else:
+        # 沒有輸入期數
+        search_url = search_url+'search_period='+str(get_data_length())
     # 呼叫api
     response = requests.get(search_url)
     # 將結果轉成dic
@@ -84,14 +93,14 @@ def post_search():
     return render_template('search_result.html', data=data_list)
 
 
-@app.route('/get_save_data/', defaults={'search_period': get_data_length()})
+# @app.route('/get_save_data/', defaults={'search_period': get_data_length()})
 @app.route('/get_save_data/search_period=<search_period>')
 def get_save_data_api(search_period):
     return get_save_data_json(search_period)
 
-@app.route('/search_numbers_combination/search_numbers=<search_numbers>', defaults={'period': get_data_length(), 'next': 1})
+# @app.route('/search_numbers_combination/search_numbers=<search_numbers>', defaults={'period': get_data_length(), 'next': 1})
 @app.route('/search_numbers_combination/search_numbers=<search_numbers>&period=<period>', defaults={'next': 1})
-@app.route('/search_numbers_combination/search_numbers=<search_numbers>&next=<next>', defaults={'period': get_data_length()})
+# @app.route('/search_numbers_combination/search_numbers=<search_numbers>&next=<next>', defaults={'period': get_data_length()})
 @app.route('/search_numbers_combination/search_numbers=<search_numbers>&period=<period>&next=<next>')
 def search_numbers_combination_api(search_numbers, period, next):
     return search_numbers_combination(search_numbers, period, next, get_save_data_df())

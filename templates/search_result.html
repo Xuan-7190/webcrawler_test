@@ -6,7 +6,10 @@
     <form class="" action="/" method="get">
         <button type="submit">重新搜尋</button>
     </form>
-    <h1>你這次搜尋的期數為{{data[0]}}</h1>
+    <!-- <h1>你這次搜尋的期數為{{data[0]}}</h1> -->
+    <div class="tables">
+
+    </div>
     <table class="table">
         <thead class="table__header">
             <th style="width: 50px" class="table__cell">期數</th>
@@ -14,6 +17,7 @@
             <th style="width: 200px" class="table__cell">今彩539中獎號碼</th>
             <th style="width: 100px" class="table__cell">備註</th>
         </thead>
+        <p></p>
         <tbody class="table__body">
             {% for item in data[1] %}
             <tr class="table__row">
@@ -37,7 +41,6 @@
             </tr>
             {% endfor %}
         </tbody>
-        
     </table>
 
 {% endblock %}
