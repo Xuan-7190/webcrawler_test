@@ -6,6 +6,7 @@ from flask_apscheduler import APScheduler
 from get_all_data import get_all_data
 
 
+
 class Config(object):
     # JOBS可以在配置裡面配置
     JOBS = [{
@@ -60,7 +61,10 @@ def post_submit():
     response = requests.get(search_url)
     # 將結果轉成dic
     response_dic = response.json()
-    return render_template('result.html', data=response_dic)
+    # 將數字組合和結果組成list進行回傳
+    data_list = [number_str, response_dic]
+    # 顯示結果頁面
+    return render_template('result.html', data=data_list)
 
 @app.route('/search', methods=['POST'])
 def post_search():
@@ -74,7 +78,10 @@ def post_search():
     response = requests.get(search_url)
     # 將結果轉成dic
     response_dic = response.json()
-    return render_template('search_result.html', data=response_dic)
+    # 將期數範圍和結果組成list進行回傳
+    data_list = [search_period, response_dic]
+    # 顯示結果頁面
+    return render_template('search_result.html', data=data_list)
 
 
 @app.route('/get_save_data/', defaults={'search_period': get_data_length()})
