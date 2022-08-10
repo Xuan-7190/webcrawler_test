@@ -64,12 +64,12 @@ def post_submit():
 
 @app.route('/search', methods=['POST'])
 def post_search():
-    search_url = 'https://flask-lto-app.herokuapp.com/get_save_data/'
+    url = 'https://flask-lto-app.herokuapp.com/get_save_data/'
     # 取得輸入的期數範圍
     search_period = request.form.get('search_period')
     # 串接url
     if (not search_period):
-        search_url = search_url+'period='+search_period
+        search_url = url+'search_period='+search_period
     # 呼叫api
     response = requests.get(search_url)
     # 將結果轉成dic
