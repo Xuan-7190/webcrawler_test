@@ -4,7 +4,7 @@
     color:#212529;
 }
 
-.table__row:nth-child(even) {
+.table__row:nth-child(odd) {
     background-color: #e5e5e5;    
 }
 

@@ -32,7 +32,20 @@
                 <tr class="table__row">
                     <td style="width: 50px" class="table__cell">{{item['期數']}}</td>
                     <td style="width: 100px" class="table__cell">{{item['開獎日期']}}</td>
-                    <td style="width: 400px" class="table__cell">{{item['今彩539中獎號碼']}}</td>
+                    <!-- <td style="width: 400px" class="table__cell">{{item['今彩539中獎號碼']}}</td> -->
+                    <td style="width: 400px" class="table__cell">
+                        {% set string1 = item['今彩539中獎號碼'] | replace("[","") | replace("]","") | replace(" ", "") %}
+                        {% set list1 = string1.split(',') %}
+                        {% set list2 = [] %}
+                        {% for c in list1 %}
+                            {% if c|length==1 %}
+                                {% set list2 = list2.append('0'+c) %}
+                            {% else %}
+                                {% set list2 = list2.append(c) %}
+                            {% endif %}
+                        {% endfor %}
+                        {{list2|join(", ")}}
+                    </td>
                     <td style="width: 100px" class="table__cell">{{item['備註']}}</td>
                 </tr>
                 {% endfor %}
