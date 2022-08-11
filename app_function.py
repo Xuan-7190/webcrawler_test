@@ -73,7 +73,7 @@ def search_numbers_combination(search_numbers, period, next, lotto_all_data_df):
                 lotto_all_data_df_tmp['NEXT'][i-int(next)] = True
 
         # 不需要回傳 CK 欄位
-        key_list = ['期數', '開獎日期', '今彩539中獎號碼', '備註']
+        key_list = ['期數', '開獎日期', '今彩539中獎號碼']
         lotto_all_data_df = lotto_all_data_df_tmp[lotto_all_data_df_tmp['CK']==True]
         lotto_all_data_df_rev = lotto_all_data_df[::-1].reset_index(drop=True)
         jdata = lotto_all_data_df_rev[key_list].to_json(orient='records', force_ascii=False)

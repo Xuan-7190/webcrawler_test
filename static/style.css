@@ -41,7 +41,19 @@ th, td {
     padding: 8px;
 }
 
-table tbody {
+/* table tbody {
+    display: block;
+    height: 400px;
+    overflow-y: auto;
+}
+
+thead, tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+} */
+
+.table_tbody {
     display: block;
     height: 400px;
     overflow-y: auto;
@@ -70,5 +82,15 @@ td {
 
 .btn btn-primary {
     display:inline-block;
+    vertical-align:middle;
+}
+
+.table1 {
+    flex: 0 1 500px;
+    vertical-align:middle;
+}
+
+.table2 {
+    flex: 0 1 500px;
     vertical-align:middle;
 }

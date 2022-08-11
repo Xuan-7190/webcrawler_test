@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div id="top">
+        <h1 class="text">搜尋結果</h1>
+        <a href="#bottom" class="btn btn-primary">到頁尾</a>
+    </div>
+    
+    <form class="" action="/" method="get">
+        <button type="submit">重新搜尋</button>
+    </form>
+
+    <h1>你這次搜尋的期數為範圍：{{data[0]}}</h1>
+
+    <table>
+        <thead>
+            <th>期數</th>
+            <th>開獎日期</th>
+            <th>今彩539中獎號碼</th>
+        </thead>
+
+        <tbody>
+            <!-- width比例 1:2:4:2  All length=450px -->
+            {% for item in data[1] %}
+            <tr>
+                <td>{{item['期數']}}</td>
+                <td>{{item['開獎日期']}}</td>
+                <td>
+                    {% set string1 = item['今彩539中獎號碼'] | replace("[","") | replace("]","") | replace(" ", "") %}
+                    {% set list1 = string1.split(',') %}
+                    {% set list2 = [] %}
+                    {% for c in list1 %}
+                        {% if c|length==1 %}
+                            {% set list2 = list2.append('0'+c) %}
+                        {% else %}
+                            {% set list2 = list2.append(c) %}
+                        {% endif %}
+                    {% endfor %}
+                    {{list2|join(", ")}}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div id="bottom">
+        <a href="#top" class="btn btn-primary">到頁首</a>
+    </div>
+
+{% endblock %}

@@ -4,7 +4,7 @@
 
     <div id="top">
         <h1 class="text">搜尋結果</h1>
-        <!-- <a href="#bottom" class="btn btn-primary">到頁尾</a> -->
+        <a href="#bottom" class="btn btn-primary">到頁尾</a>
     </div>
 
     <form class="" action="/" method="get">
@@ -25,7 +25,13 @@
             <tbody>
                 {% for key, value in data[1].statistics_result.items() %}
                 <tr>
-                    <td>{{key}}</td>
+                    <td>
+                        {% if key|length==1 %}
+                            {{'0'+key}}
+                        {% else %}
+                            {{key}}
+                        {% endif %}
+                    </td>
                     <td>{{value}}</td>
                 </tr>
                 {% endfor %}
@@ -37,7 +43,6 @@
                     <th>期數</th>
                     <th>開獎日期</th>
                     <th>今彩539中獎號碼</th>
-                    <th>備註</th>
                 </tr>
             </thead>
             <tbody>
@@ -58,15 +63,14 @@
                         {% endfor %}
                         {{data1_list2|join(", ")}}
                     </td>
-                    <td>{{item['備註']}}</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
 
-    <!-- <div id="bottom">
+    <div id="bottom">
         <a href="#top" class="btn btn-primary">到頁首</a>
-    </div> -->
+    </div>
 
 {% endblock  %}
