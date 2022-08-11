@@ -48,3 +48,13 @@
 .table__cell {
     padding: 8px;
 }
+
+.text {
+    display:inline-block;
+    vertical-align:middle;
+}
+
+.btn btn-primary {
+    display:inline-block;
+    vertical-align:middle;
+}
