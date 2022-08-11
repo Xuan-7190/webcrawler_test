@@ -4,7 +4,7 @@ import pandas as pd
 import json
 from flask import jsonify
 
-url = '''https://raw.githubusercontent.com/Xuan-7190/webcrawler_test/master/539%E6%A8%82%E9%80%8F%E8%B3%87%E6%96%99.csv'''
+# url = '''https://raw.githubusercontent.com/Xuan-7190/webcrawler_test/master/539%E6%A8%82%E9%80%8F%E8%B3%87%E6%96%99.csv'''
 
 
 # 取得資料的全部範圍

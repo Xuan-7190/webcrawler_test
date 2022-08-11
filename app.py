@@ -13,8 +13,8 @@ class Config(object):
         'func': 'app:get_all_data',
         'trigger' : 'cron',
         'day' : '*',
-        'hour' : '20',
-        'minute' : '40',
+        'hour' : '21',
+        'minute' : '21',
         'second' : '0',
         'replace_existing' : True # 重新執行程序時，會將jobStore中的任務替換掉
     }]
