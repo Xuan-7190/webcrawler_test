@@ -4,61 +4,69 @@
 
     <div id="top">
         <h1 class="text">搜尋結果</h1>
-        <a href="#bottom" class="btn btn-primary">到頁尾</a>
+        <!-- <a href="#bottom" class="btn btn-primary">到頁尾</a> -->
     </div>
+
     <form class="" action="/" method="get">
         <button type="submit">重新搜尋</button>
     </form>
-    <h1>你這次搜尋的數字組合為：{{data[0]}}</h1>
+    
+    {% set data0_list = data[0].split(' ') %}
+    <h1>你這次搜尋的數字組合為：{{data0_list|join(", ")}}</h1>
+
     <div class="tables">
-        <table class="table">
-            <thead class="table__header">
-                <th style="width: 100px" class="table__cell">號碼</th>
-                <th style="width: 200px" class="table__cell">出現次數</th>
+        <table class="table__number">
+            <thead>
+                <tr>
+                    <th>號碼</th>
+                    <th>出現次數</th>
+                </tr>
             </thead>
-            <tbody class="table__body">
+            <tbody>
                 {% for key, value in data[1].statistics_result.items() %}
-                <tr class="table1__row">
-                    <td style="width: 100px" class="table__cell">{{key}}</td>
-                    <td style="width: 200px" class="table__cell">{{value}}</td>
+                <tr>
+                    <td>{{key}}</td>
+                    <td>{{value}}</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
-        <table class="table">
-            <thead class="table__header">
-                <th style="width: 100px" class="table__cell">期數</th>
-                <th style="width: 100px" class="table__cell">開獎日期</th>
-                <th style="width: 200px" class="table__cell">今彩539中獎號碼</th>
-                <th style="width: 100px" class="table__cell">備註</th>
+        <table class="table__search">
+            <thead>
+                <tr>
+                    <th>期數</th>
+                    <th>開獎日期</th>
+                    <th>今彩539中獎號碼</th>
+                    <th>備註</th>
+                </tr>
             </thead>
-            <tbody class="table__body">
+            <tbody>
                 {% for item in data[1].jdata %}
-                <tr class="table2__row">
-                    <td style="width: 100px" class="table__cell">{{item['期數']}}</td>
-                    <td style="width: 100px" class="table__cell">{{item['開獎日期']}}</td>
-                    <!-- <td style="width: 400px" class="table__cell">{{item['今彩539中獎號碼']}}</td> -->
-                    <td style="width: 200px" class="table__cell">
-                        {% set string1 = item['今彩539中獎號碼'] | replace("[","") | replace("]","") | replace(" ", "") %}
-                        {% set list1 = string1.split(',') %}
-                        {% set list2 = [] %}
-                        {% for c in list1 %}
+                <tr class="search_row">
+                    <td>{{item['期數']}}</td>
+                    <td>{{item['開獎日期']}}</td>
+                    <td>
+                        {% set data1_string1 = item['今彩539中獎號碼'] | replace("[","") | replace("]","") | replace(" ", "") %}
+                        {% set data1_list1 = data1_string1.split(',') %}
+                        {% set data1_list2 = [] %}
+                        {% for c in data1_list1 %}
                             {% if c|length==1 %}
-                                {% set list2 = list2.append('0'+c) %}
+                                {% set data1_list2 = data1_list2.append('0'+c) %}
                             {% else %}
-                                {% set list2 = list2.append(c) %}
+                                {% set data1_list2 = data1_list2.append(c) %}
                             {% endif %}
                         {% endfor %}
-                        {{list2|join(", ")}}
+                        {{data1_list2|join(", ")}}
                     </td>
-                    <td style="width: 100px" class="table__cell">{{item['備註']}}</td>
+                    <td>{{item['備註']}}</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
-    <div id="bottom">
+
+    <!-- <div id="bottom">
         <a href="#top" class="btn btn-primary">到頁首</a>
-    </div>
+    </div> -->
 
 {% endblock  %}

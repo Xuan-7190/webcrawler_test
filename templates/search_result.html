@@ -4,26 +4,30 @@
 
     <div id="top">
         <h1 class="text">搜尋結果</h1>
-        <a href="#bottom" class="btn btn-primary">到頁尾</a>
+        <!-- <a href="#bottom" class="btn btn-primary">到頁尾</a> -->
     </div>
+    
     <form class="" action="/" method="get">
         <button type="submit">重新搜尋</button>
     </form>
-    <!-- <h1>你這次搜尋的期數為{{data[0]}}</h1> -->
-    <table class="table">
-        <thead class="table__header">
-            <th style="width: 100px" class="table__cell">期數</th>
-            <th style="width: 100px" class="table__cell">開獎日期</th>
-            <th style="width: 200px" class="table__cell">今彩539中獎號碼</th>
-            <th style="width: 100px" class="table__cell">備註</th>
+
+    <h1>你這次搜尋的期數為範圍：{{data[0]}}</h1>
+
+    <table>
+        <thead>
+            <th>期數</th>
+            <th>開獎日期</th>
+            <th>今彩539中獎號碼</th>
+            <th>備註</th>
         </thead>
-        <tbody class="table__body">
+
+        <tbody>
+            <!-- width比例 1:2:4:2  All length=450px -->
             {% for item in data[1] %}
-            <tr class="table__row">
-                <td style="width: 100px" class="table__cell">{{item['期數']}}</td>
-                <td style="width: 100px" class="table__cell">{{item['開獎日期']}}</td>
-                <!-- <td style="width: 400px" class="table__cell">{{item['今彩539中獎號碼']}}</td> -->
-                <td style="width: 200px" class="table__cell">
+            <tr>
+                <td>{{item['期數']}}</td>
+                <td>{{item['開獎日期']}}</td>
+                <td>
                     {% set string1 = item['今彩539中獎號碼'] | replace("[","") | replace("]","") | replace(" ", "") %}
                     {% set list1 = string1.split(',') %}
                     {% set list2 = [] %}
@@ -36,13 +40,14 @@
                     {% endfor %}
                     {{list2|join(", ")}}
                 </td>
-                <td style="width: 100px" class="table__cell">{{item['備註']}}</td>
+                <td>{{item['備註']}}</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-    <div id="bottom">
+
+    <!-- <div id="bottom">
         <a href="#top" class="btn btn-primary">到頁首</a>
-    </div>
+    </div> -->
 
 {% endblock %}

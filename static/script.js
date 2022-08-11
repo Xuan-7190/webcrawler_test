@@ -1,7 +1,7 @@
 $('#combinations_list').change(function () {
     // 取得select option的長度
     var length = $('#combinations_list').val();
-    // 取得要加入到的div
+    // 取得要加入到的地方
     var container = $('#input_number');
     // 每次先清空div
     container.empty();

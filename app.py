@@ -47,8 +47,10 @@ def post_submit():
     # 取得輸入的數字組合
     number_str = ''
     for i in range(int(combinations_list)):
-        number_str += request.form.get('number'+str(i+1)) + ' '
-        # number = request.form.get('number')
+        if i != (int(combinations_list)-1):
+            number_str += request.form.get('number'+str(i+1)) + ' '
+        else:
+            number_str += request.form.get('number'+str(i+1))
     # 取得輸入的期數範圍
     period = request.form.get('period')
     # 取得輸入的下幾期
@@ -82,6 +84,7 @@ def post_search():
         search_url = search_url+'search_period='+search_period
     else:
         # 沒有輸入期數
+        search_period = str(get_data_length())
         search_url = search_url+'search_period='+str(get_data_length())
     # 呼叫api
     response = requests.get(search_url)
@@ -93,14 +96,11 @@ def post_search():
     return render_template('search_result.html', data=data_list)
 
 
-# @app.route('/get_save_data/', defaults={'search_period': get_data_length()})
 @app.route('/get_save_data/search_period=<search_period>')
 def get_save_data_api(search_period):
     return get_save_data_json(search_period)
 
-# @app.route('/search_numbers_combination/search_numbers=<search_numbers>', defaults={'period': get_data_length(), 'next': 1})
 @app.route('/search_numbers_combination/search_numbers=<search_numbers>&period=<period>', defaults={'next': 1})
-# @app.route('/search_numbers_combination/search_numbers=<search_numbers>&next=<next>', defaults={'period': get_data_length()})
 @app.route('/search_numbers_combination/search_numbers=<search_numbers>&period=<period>&next=<next>')
 def search_numbers_combination_api(search_numbers, period, next):
     return search_numbers_combination(search_numbers, period, next, get_save_data_df())
