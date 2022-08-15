@@ -44,7 +44,9 @@ def post_update():
     
     requests.get(update_url)
     
-    return redirect(url_for('index'))
+    return redirect('https://flask-lto-app.herokuapp.com', code=302)
+    # return redirect('http://127.0.0.1:5000', code=302)
+    # return redirect(url_for('index'))
     
 
 @app.route('/submit', methods=['POST'])
