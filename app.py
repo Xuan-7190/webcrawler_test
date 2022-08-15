@@ -39,20 +39,18 @@ def index():
 
 @app.route('/update', methods=['POST'])
 def post_update():
-    # update_url = 'https://flask-lto-app.herokuapp.com/get_all_data'
-    update_url = 'http://127.0.0.1:5000/get_all_data'
+    update_url = 'https://flask-lto-app.herokuapp.com/get_all_data'
+    # update_url = 'http://127.0.0.1:5000/get_all_data'
     
     requests.get(update_url)
     
-    # return redirect('https://flask-lto-app.herokuapp.com', code=302)
-    # return redirect('http://127.0.0.1:5000', code=302)
     return redirect(url_for('index'))
     
 
 @app.route('/submit', methods=['POST'])
 def post_submit():
-    # url = 'https://flask-lto-app.herokuapp.com/get_all_data/'
-    url = 'http://127.0.0.1:5000/get_all_data/'
+    url = 'https://flask-lto-app.herokuapp.com/get_all_data/'
+    # url = 'http://127.0.0.1:5000/get_all_data/'
     
     # 取得使用者選擇幾種數字組合
     combinations_list = request.form.get('combinations_list')
@@ -85,8 +83,8 @@ def post_submit():
 
 @app.route('/search', methods=['POST'])
 def post_search():
-    # search_url = 'https://flask-lto-app.herokuapp.com/get_save_data/'
-    search_url = 'http://127.0.0.1:5000/get_save_data/'
+    search_url = 'https://flask-lto-app.herokuapp.com/get_save_data/'
+    # search_url = 'http://127.0.0.1:5000/get_save_data/'
     
     # 取得輸入的期數範圍
     search_period = request.form.get('search_period')
