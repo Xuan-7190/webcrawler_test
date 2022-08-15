@@ -1,5 +1,5 @@
 import requests
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, redirect, url_for
 from app_function import get_data_length, get_save_data_df, get_save_data_json, search_numbers_combination
 from apscheduler.schedulers.background import BackgroundScheduler
 from flask_apscheduler import APScheduler
@@ -13,9 +13,9 @@ class Config(object):
         'func': 'app:get_all_data',
         'trigger' : 'cron',
         'day' : '*',
-        'hour' : '20',
-        'minute' : '40',
-        'second' : '0',
+        'hour' : '10',
+        'minute' : '7',
+        'second' : '30',
         'replace_existing' : True # 重新執行程序時，會將jobStore中的任務替換掉
     }]
     SCHEDULER_TIMEZONE = 'Asia/Taipei'  # 配置時區
@@ -37,10 +37,22 @@ scheduler.start()
 def index():
     return render_template('index.html')
 
+@app.route('/update', methods=['POST'])
+def post_update():
+    # update_url = 'https://flask-lto-app.herokuapp.com/get_all_data'
+    update_url = 'http://127.0.0.1:5000/get_all_data'
+    
+    requests.get(update_url)
+    
+    # return redirect('https://flask-lto-app.herokuapp.com', code=302)
+    # return redirect('http://127.0.0.1:5000', code=302)
+    return redirect(url_for('index'))
+    
+
 @app.route('/submit', methods=['POST'])
 def post_submit():
-    url = 'https://flask-lto-app.herokuapp.com/search_numbers_combination/'
-    # url = 'http://127.0.0.1:5000/search_numbers_combination/'
+    # url = 'https://flask-lto-app.herokuapp.com/get_all_data/'
+    url = 'http://127.0.0.1:5000/get_all_data/'
     
     # 取得使用者選擇幾種數字組合
     combinations_list = request.form.get('combinations_list')
@@ -73,8 +85,8 @@ def post_submit():
 
 @app.route('/search', methods=['POST'])
 def post_search():
-    search_url = 'https://flask-lto-app.herokuapp.com/get_save_data/'
-    # search_url = 'http://127.0.0.1:5000/get_save_data/'
+    # search_url = 'https://flask-lto-app.herokuapp.com/get_save_data/'
+    search_url = 'http://127.0.0.1:5000/get_save_data/'
     
     # 取得輸入的期數範圍
     search_period = request.form.get('search_period')
@@ -95,6 +107,10 @@ def post_search():
     # 顯示結果頁面
     return render_template('search_result.html', data=data_list)
 
+@app.route('/get_all_data')
+def get_all_data_api():
+    get_all_data()
+    return 'update success'
 
 @app.route('/get_save_data/search_period=<search_period>')
 def get_save_data_api(search_period):
@@ -104,5 +120,5 @@ def get_save_data_api(search_period):
 @app.route('/search_numbers_combination/search_numbers=<search_numbers>&period=<period>&next=<next>')
 def search_numbers_combination_api(search_numbers, period, next):
     return search_numbers_combination(search_numbers, period, next, get_save_data_df())
-   
+
     # app.run(debug=True)
